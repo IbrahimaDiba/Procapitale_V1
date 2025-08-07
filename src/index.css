@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles pour la visualisation des factures */
+.invoice-preview {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+.invoice-preview h1 {
+  color: #1f2937;
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.invoice-preview h3 {
+  color: #1f2937;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.invoice-preview h4 {
+  color: #1f2937;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.invoice-preview p {
+  margin: 0.25rem 0;
+}
+
+.invoice-preview strong {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Animation pour le modal */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
