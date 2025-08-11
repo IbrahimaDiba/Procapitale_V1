@@ -41,6 +41,7 @@ const InvoiceUpload: React.FC<InvoiceUploadProps> = ({ userType, onNavigate }) =
     buyer: '',
     dueDate: '',
     description: '',
+    responsibleName: '',
     financingRequested: true
   });
 
@@ -81,7 +82,13 @@ const InvoiceUpload: React.FC<InvoiceUploadProps> = ({ userType, onNavigate }) =
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Créer la nouvelle facture avec le fichier uploadé
+    // Validation de sécurité
+    if (!formData.responsibleName.trim()) {
+      alert('Le nom du responsable est obligatoire pour des raisons de sécurité.');
+      return;
+    }
+
+    // Créer la nouvelle facture avec le fichier uploadé et sécurisée
     const newInvoice = {
       id: `INV-${String(invoices.length + 1).padStart(3, '0')}`,
       fileName: uploadedFiles.length > 0 ? uploadedFiles[0].name : `Facture_${formData.buyer.replace(/\s+/g, '_')}_${formData.invoiceNumber}.pdf`,
@@ -92,7 +99,10 @@ const InvoiceUpload: React.FC<InvoiceUploadProps> = ({ userType, onNavigate }) =
       uploadDate: new Date().toISOString().split('T')[0],
       financingRequested: formData.financingRequested,
       description: formData.description,
-      file: uploadedFiles.length > 0 ? uploadedFiles[0] : null
+      responsibleName: formData.responsibleName,
+      file: uploadedFiles.length > 0 ? uploadedFiles[0] : null,
+      secured: true,
+      securityHash: btoa(`${formData.responsibleName}-${formData.invoiceNumber}-${Date.now()}`)
     };
     
     setInvoices(prev => [newInvoice, ...prev]);
@@ -104,6 +114,7 @@ const InvoiceUpload: React.FC<InvoiceUploadProps> = ({ userType, onNavigate }) =
       buyer: '',
       dueDate: '',
       description: '',
+      responsibleName: '',
       financingRequested: true
     });
   };
@@ -481,6 +492,21 @@ const InvoiceUpload: React.FC<InvoiceUploadProps> = ({ userType, onNavigate }) =
                       required
                     />
                   </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Nom du responsable *
+                  </label>
+                  <input
+                    type="text"
+                    name="responsibleName"
+                    value={formData.responsibleName}
+                    onChange={handleInputChange}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="Nom de la personne responsable de cette facture"
+                    required
+                  />
                 </div>
 
                 <div>

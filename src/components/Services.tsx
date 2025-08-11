@@ -3,11 +3,11 @@ import { FileText, Repeat, Truck, Clock, Building, ChevronRight } from 'lucide-r
 const Services: React.FC = () => {
   const services = [
     {
-      icon: Building,
-      title: 'Financement de marchés publics',
-      description: 'Financez vos contrats publics rapidement et en toute sécurité.',
-      color: 'bg-green-100 text-green-600',
-      features: ['Pré-financement', 'Garanties bancaires', 'Suivi en temps réel']
+      icon: Truck,
+      title: 'Supply Chain Financing',
+      description: 'Optimisez le financement de votre chaîne d\'approvisionnement.',
+      color: 'bg-purple-100 text-purple-600',
+      features: ['Financement fournisseurs', 'Optimisation cash-flow', 'Relations renforcées']
     },
     {
       icon: Repeat,
@@ -17,18 +17,18 @@ const Services: React.FC = () => {
       features: ['Factoring classique', 'Reverse factoring', 'Sans recours']
     },
     {
-      icon: Truck,
-      title: 'Supply Chain Financing',
-      description: 'Optimisez le financement de votre chaîne d\'approvisionnement.',
-      color: 'bg-purple-100 text-purple-600',
-      features: ['Financement fournisseurs', 'Optimisation cash-flow', 'Relations renforcées']
-    },
-    {
       icon: Clock,
       title: 'Financement BFR',
       description: 'Financements courts termes pour votre besoin en fonds de roulement.',
       color: 'bg-orange-100 text-orange-600',
       features: ['Moins de 90 jours', 'Procédure simplifiée', 'Réponse rapide']
+    },
+    {
+      icon: Building,
+      title: 'Financement de marchés publics',
+      description: 'Financez vos contrats publics rapidement et en toute sécurité.',
+      color: 'bg-green-100 text-green-600',
+      features: ['Pré-financement', 'Garanties bancaires', 'Suivi en temps réel']
     },
     {
       icon: FileText,
@@ -48,7 +48,7 @@ const Services: React.FC = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Une gamme complète de solutions financières adaptées aux besoins 
-            spécifiques des TPE/PME sénégalaises.
+            spécifiques des TPE/PME africaines.
           </p>
         </div>
 

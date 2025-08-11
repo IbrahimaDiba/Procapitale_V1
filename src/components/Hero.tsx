@@ -14,11 +14,11 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Financement
                 <span className="text-blue-600"> TPE/PME </span>
-                au Sénégal
+                Africaine
               </h1>
               <p className="text-xl text-gray-600 leading-relaxed">
                 La première marketplace numérique pour faciliter l'accès au financement 
-                des petites et moyennes entreprises sénégalaises.
+                des petites et moyennes entreprises africaines.
               </p>
             </div>
 
