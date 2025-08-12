@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Building2, Menu, X, LogOut } from 'lucide-react';
+import { Menu, X, LogOut } from 'lucide-react';
 
 interface HeaderProps {
   onNavigate: (view: string, type?: string) => void;
@@ -30,7 +30,11 @@ const Header: React.FC<HeaderProps> = ({ onNavigate, isAuthenticated, userType, 
             className="flex items-center cursor-pointer"
             onClick={() => onNavigate('home')}
           >
-            <Building2 className="h-10 w-10 text-blue-600" />
+            <img 
+              src="/images (2).png" 
+              alt="ProCapital Logo" 
+              className="h-10 w-10 object-contain"
+            />
             <span className="ml-2 text-xl font-bold text-gray-900">ProCapital</span>
           </div>
 

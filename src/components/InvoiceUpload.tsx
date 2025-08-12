@@ -622,27 +622,55 @@ const InvoiceUpload: React.FC<InvoiceUploadProps> = ({ userType, onNavigate }) =
                         )}
                       </td>
                       <td className="py-4 px-6">
-                        <div className="flex space-x-2">
-                          <button 
-                            onClick={() => handleViewInvoice(invoice)}
-                            className="text-blue-600 hover:text-blue-800 transition-colors"
-                            title="Voir la facture"
-                          >
-                            <Eye size={16} />
-                          </button>
-                          <button 
-                            className="text-gray-600 hover:text-gray-800 transition-colors"
-                            title="Télécharger"
-                          >
-                            <Download size={16} />
-                          </button>
-                          {invoice.status === 'validated' && invoice.financingRequested && (
+                        <div className="flex flex-col space-y-2">
+                          <div className="flex space-x-2">
                             <button 
-                              onClick={() => onNavigate('auctions')}
-                              className="text-green-600 hover:text-green-800 text-xs font-medium"
+                              onClick={() => handleViewInvoice(invoice)}
+                              className="text-blue-600 hover:text-blue-800 transition-colors"
+                              title="Voir la facture"
                             >
-                              Voir enchères
+                              <Eye size={16} />
                             </button>
+                            <button 
+                              className="text-gray-600 hover:text-gray-800 transition-colors"
+                              title="Télécharger"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (invoice.file) {
+                                  const link = document.createElement('a');
+                                  link.href = URL.createObjectURL(invoice.file);
+                                  link.download = invoice.fileName || 'facture.pdf';
+                                  document.body.appendChild(link);
+                                  link.click();
+                                  document.body.removeChild(link);
+                                }
+                              }}
+                            >
+                              <Download size={16} />
+                            </button>
+                            {userType === 'financier' && (
+                              <button 
+                                className="text-purple-600 hover:text-purple-800 transition-colors"
+                                title="Ajouter un commentaire"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  const comment = prompt('Ajoutez un commentaire pour cette facture:');
+                                  if (comment !== null) {
+                                    // Here you would typically update the invoice with the comment
+                                    console.log(`Comment added to invoice ${invoice.id}:`, comment);
+                                  }
+                                }}
+                              >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                              </button>
+                            )}
+                          </div>
+                          {userType === 'financier' && invoice.comment && (
+                            <div className="text-xs text-gray-500 mt-1">
+                              <strong>Note:</strong> {invoice.comment}
+                            </div>
                           )}
                         </div>
                       </td>

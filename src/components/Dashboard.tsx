@@ -216,14 +216,7 @@ const Dashboard: React.FC<DashboardProps> = ({ userType, userData, onLogout, onN
       {/* Quick Actions */}
       <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Actions rapides</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button 
-            onClick={() => onNavigate('auctions')}
-            className="flex items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-green-500 hover:bg-green-50 transition-colors group"
-          >
-            <BarChart3 className="w-6 h-6 text-gray-400 group-hover:text-green-500 mr-2" />
-            <span className="text-gray-600 group-hover:text-blue-600">Voir les enchères</span>
-          </button>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <button 
             onClick={() => onNavigate('payments')}
             className="flex items-center justify-center p-4 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors group"
