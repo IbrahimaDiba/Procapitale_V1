@@ -54,7 +54,7 @@ function App() {
       case 'login':
         return <Login onLogin={handleLogin} onNavigate={handleNavigation} />;
       case 'register':
-        return <Register onNavigate={handleNavigation} />;
+        return <Register onNavigate={handleNavigation} userType={userType || ''} />;
       case 'kyc':
         return isAuthenticated ? (
           <KYCDocuments userType={userType} userData={userData} onNavigate={handleNavigation} />

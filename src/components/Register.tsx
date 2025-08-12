@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronRight, Building2, Users, Briefcase, Banknote } from 'lucide-react';
 
 interface RegisterProps {
-  onNavigate: (view: string) => void;
+  onNavigate: (view: string, type?: string) => void;
+  userType?: string;
 }
 
-const Register: React.FC<RegisterProps> = ({ onNavigate }) => {
+const Register: React.FC<RegisterProps> = ({ onNavigate, userType: propUserType }) => {
   const [step, setStep] = useState(1);
-  const [userType, setUserType] = useState('');
+  const [userType, setUserType] = useState(propUserType || '');
+  
+  // If userType is provided via props, skip to form step
+  useEffect(() => {
+    if (propUserType) {
+      setUserType(propUserType);
+      setStep(2);
+    }
+  }, [propUserType]);
   const [formData, setFormData] = useState({
     companyName: '',
     email: '',

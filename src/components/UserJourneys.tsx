@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Building2, Banknote, Briefcase, ChevronRight } from 'lucide-react';
+import { Building2, Banknote, Briefcase, ChevronRight } from 'lucide-react';
 
 interface UserJourneysProps {
   onNavigate: (view: string, type?: string) => void;
@@ -22,21 +22,7 @@ const UserJourneys: React.FC<UserJourneysProps> = ({ onNavigate }) => {
         'Financement automatique'
       ]
     },
-    {
-      type: 'micro',
-      icon: Users,
-      title: 'Micro-entreprises',
-      description: 'Solutions adaptées aux petites structures avec accompagnement personnalisé.',
-      color: 'bg-blue-100 text-blue-600 border-blue-200',
-      journey: [
-        'Profil simplifié',
-        'Accompagnement dédié',
-        'Gestionnaire de crédit',
-        'Documents allégés',
-        'Processus accéléré',
-        'Suivi personnalisé'
-      ]
-    },
+
     {
       type: 'buyer',
       icon: Briefcase,
@@ -111,13 +97,19 @@ const UserJourneys: React.FC<UserJourneysProps> = ({ onNavigate }) => {
                   </div>
                 ))}
               </div>
-              <button 
-                onClick={() => onNavigate('register', user.type)}
-                className={`w-full ${user.color.replace('100', '600').replace('text-', 'bg-').split(' ')[0]} text-white py-3 rounded-lg font-medium hover:opacity-90 transition-all flex items-center justify-center group`}
-              >
-                Commencer le parcours
-                <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <div className="mt-4">
+                <button 
+                  onClick={() => onNavigate('register', user.type)}
+                  className={`w-full py-3 rounded-lg font-medium hover:opacity-90 transition-all flex items-center justify-center group ${
+                    user.type === 'supplier' ? 'bg-green-600' : 
+                    user.type === 'buyer' ? 'bg-purple-600' : 
+                    'bg-orange-600'
+                  } text-white`}
+                >
+                  Commencer le parcours
+                  <ChevronRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </div>
             </div>
           ))}
         </div>
